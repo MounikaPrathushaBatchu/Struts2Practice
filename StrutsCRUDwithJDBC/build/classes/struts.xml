@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+	"https://struts.apache.org/dtds/struts-2.0.dtd">
+
+<struts>
+	<package name="default" extends="struts-default">
+		<action name="saveProd" method="saveProduct" class="controller.ProductController">
+			<result name="success">/index.jsp</result>
+			<result name="input">/index.jsp</result>
+		</action>
+
+		<action name="listPage" method="findAllProducts" class="controller.ProductController">
+			<result name="success">/list.jsp</result>
+		</action>
+
+		<action name="editEmp" method="editProduct" class="controller.ProductController">
+			<result name="success">/edit.jsp</result>
+		</action>
+		
+		<action name="updateEmp" method="saveProduct" class="controller.ProductController">
+			<result name="success">/edit.jsp</result>
+		</action>
+
+		<action name="deleteEmp" method="deleteProduct" class="controller.ProductController">
+			<result name="success">/list.jsp</result>
+		</action>
+	</package>
+</struts>
