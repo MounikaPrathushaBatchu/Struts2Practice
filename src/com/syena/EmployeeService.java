@@ -34,13 +34,13 @@ public class EmployeeService {
 
 	public String registration(Employee e1) {
 		try {
-			String sql = "select * from emp where eid = '"+e1.getEid()+"'";
-			pst = con.prepareStatement(sql);
-			rs = pst.executeQuery(sql);
-			if(rs.next()) {
-				status = "existed";
-				System.out.println("existed");
-			} else {
+//			String sql = "select * from emp where eid = '"+e1.getEid()+"'";
+//			pst = con.prepareStatement(sql);
+//			rs = pst.executeQuery(sql);
+//			if(rs.next()) {
+//				status = "existed";
+//				System.out.println("existed");
+//			} else {
 				pst.executeUpdate("insert into emp(eid,ename,eemail,emobile) values(?,?,?,?)");
 				pst.setString(1, e1.getEid());
 				pst.setString(2, e1.getEname());
@@ -48,7 +48,7 @@ public class EmployeeService {
 				pst.setString(4, e1.getEmobile());
 				status = "success";
 				System.out.println("success");
-			}
+//			}
 		} catch (SQLException e) {
 			status = "failure";
 			System.out.println("fail");

@@ -17,7 +17,7 @@ public class RegistrationAction extends ActionSupport {
 		String status = "";
 		
 		EmployeeService es = new EmployeeService();
-		status = es.registration(getE1());
+		status = es.registration(e1);
 		
 		return status;
 	}
