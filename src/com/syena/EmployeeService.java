@@ -13,20 +13,11 @@ public class EmployeeService {
 	PreparedStatement pst;
 	ResultSet rs;
 	String status = "";
-	Employee e1;
-	public Employee getE1() {
-		return e1;
-	}
-
-	public void setE1(Employee e1) {
-		this.e1 = e1;
-	}
 
 	public EmployeeService() {
 		try {
 			Class.forName("oracle.jdbc.OracleDriver");
 			con = DriverManager.getConnection("jdbc:oracle:thin:@192.168.10.230:1521:orcl", "training", "training");
-//			pst = con.prepareStatement(sql);
 		} catch(Exception e) {
 			e.printStackTrace();
 		}
@@ -36,7 +27,7 @@ public class EmployeeService {
 		try {
 			String sql = "select * from emp where eid = '"+e1.getEid()+"'";
 			pst = con.prepareStatement(sql);
-			rs = pst.executeQuery(sql);
+			rs = pst.executeQuery();
 			if(rs.next()) {
 				status = "existed";
 				System.out.println("existed");
@@ -46,6 +37,7 @@ public class EmployeeService {
 				pst.setString(2, e1.getEname());
 				pst.setString(3, e1.getEemail());
 				pst.setString(4, e1.getEmobile());
+				pst.executeUpdate();
 				status = "success";
 				System.out.println("success");
 			}
@@ -57,13 +49,13 @@ public class EmployeeService {
 		return status;
 	}
 
-	public String update(Employee e2) {
+	public String update(Employee e1) {
 		try {
 //			String sql = "select * from emp where eid = eid";
 //			pst = con.prepareStatement(sql);
 //			rs = pst.executeQuery(sql);
-			pst = con.prepareStatement("select * from emp where eid = '"+e2.getEid()+"'");
-			rs = pst.executeQuery("select * from emp where eid = '"+e2.getEid()+"'");
+			pst = con.prepareStatement("select * from emp where eid = '"+e1.getEid()+"'");
+			rs = pst.executeQuery();
 			boolean b = rs.next();
 			if(b == true) {
 				pst.executeUpdate("update emp set ename = ?, eemail = ?, emobile = ? where eid = ?");
@@ -71,6 +63,7 @@ public class EmployeeService {
 				pst.setString(2, e1.getEemail());
 				pst.setString(3, e1.getEmobile());
 				pst.setString(4,e1.getEid());
+				pst.executeUpdate();
 				status = "success";
 			}
 		} catch(Exception e) {
@@ -86,7 +79,6 @@ public class EmployeeService {
 			boolean b = rs.next();
 			if(b == true) {
 				pst.executeUpdate("delete from emp where eid = eid");
-//				pst.executeUpdate("delete from emp where eid = '"+e3.getEid()+"'");
 				status = "success";
 			}
 		} catch(Exception e) {
