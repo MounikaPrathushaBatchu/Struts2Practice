@@ -4,7 +4,7 @@ import com.opensymphony.xwork2.ActionSupport;
 
 public class RegistrationAction extends ActionSupport {
 	
-	Employee e1;
+	Employee e1 = new Employee();
 	
 	public Employee getE1() {
 		return e1;
