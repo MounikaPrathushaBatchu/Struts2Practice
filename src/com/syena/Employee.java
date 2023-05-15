@@ -38,5 +38,8 @@ public class Employee {
 		this.eemail = eemail;
 		this.emobile = emobile;
 	}
-
+	@Override
+	public String toString() {
+		return "Employee [eid=" + eid + ", ename=" + ename + ", eemail=" + eemail + ", emobile=" + emobile + "]";
+	}
 }
